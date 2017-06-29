@@ -1,27 +1,23 @@
 package byAJ.Securex.models;
 
-import javax.persistence.*;
-import java.util.Set;
-
 /**
- * Created by student on 6/28/17.
+ * Created by student on 6/29/17.
  */
+
+        import javax.persistence.*;
+        import java.util.Set;
+
 @Entity
 public class Role {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String role;
 
-    @ManyToMany(mappedBy="roles", fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private Set<User> users;
-
-    public Role()
-    {
-
-    }
 
     public long getId() {
         return id;
@@ -46,16 +42,4 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                ", users=" + users +
-                '}';
-    }
 }
-
-
-

@@ -1,10 +1,11 @@
 package byAJ.Securex.models;
 
+/**
+ * Created by student on 6/29/17.
+ */
 import javax.persistence.*;
 import java.util.Set;
-/**
- * Created by student on 6/28/17.
- */
+
 @Entity
 public class User {
     @Id
@@ -12,37 +13,13 @@ public class User {
     private long id;
 
     private String username;
-
     private String password;
-
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User()
-    {
-
-    }
-
-    @Override
-    public String toString() {
-
-        StringBuilder sb=new StringBuilder();
-        for(Role role:roles)
-        {
-            sb.append(role.getRole()+" ");
-        }
-
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                ", roles=" + roles +
-                '}';
-    }
 
     public long getId() {
         return id;
@@ -82,5 +59,16 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
     }
 }
